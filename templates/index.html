@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Listing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <style>
+        .product-image img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            object-fit: cover;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: rgb(31, 29, 29);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container {
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid rgb(255, 255, 255);
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #2e2e2f;
+            padding: 20px;
+        }
+
+        input[type="file"], textarea {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #e3ab31;
+            color: rgb(236, 227, 227);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            border: 2px solid rgb(255, 255, 255);
+        }
+
+        button:hover {
+            background-color: #513fee;
+        }
+
+        .result-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .product-image {
+            max-width: 300px;
+            max-height: 300px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .product-details {
+            flex: 1;
+            padding: 15px;
+            background-color: #fafafa;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .product-details h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .product-details p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .product-details ul {
+            list-style-type: none;
+        }
+
+        .product-details ul li {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        .product-details .price {
+            font-size: 20px;
+            color: #28a745;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 1024px) {
+            .result-container {
+                flex-direction: column;
+                align-items: center;
+                
+            }
+
+            .product-image {
+                max-width: 80%;
+                margin: 0 auto;
+            }
+
+            .product-details {
+                text-align: center;
+                margin-top: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 15px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+
+            .product-image img {
+                max-width: 80%;
+            }
+
+            .result-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .product-details h2 {
+                font-size: 22px;
+            }
+
+            .product-details p {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            input[type="file"], textarea, button {
+                font-size: 14px;
+            }
+
+            .product-details h2 {
+                font-size: 20px;
+            }
+
+            .product-details p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Upload Image and Caption</h1>
+            <form action="/process" method="POST" enctype="multipart/form-data">
+                <input type="file" name="image" accept="image/*" required>
+                <textarea name="caption" rows="4" placeholder="Enter the caption. Mention the product price, the country of origin and other relevant details." required></textarea>
+                <button type="submit">Generate Product Listing</button>
+            </form>
+        </div>
+
+        {% if result %}
+            <div class="result-container">
+                <div class="product-image">
+                    <h3 style="color: #ffffff;">Product Features</h3>
+                    <img src="{{ image_url }}" alt="Product Image">
+                </div>
+                <div class="product-details">
+                    <p class="description">Description: <br> {{ result['ai_description'] | nl2br  }}</p>
+                    <p class="price"><b>Price: {{ result['price'] }} </b></p>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
