@@ -1,0 +1,84 @@
+.contact-us-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 5px;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 25px;
+    margin-bottom: 8px;
+  }
+  
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .form-group {
+    width: 100%;
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  label {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  input,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  textarea {
+    height: 150px;
+  }
+  
+  .submit-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background: linear-gradient(to right, #ffb433, #f97316, #ea580c); /* From orange-500 to orange-800 */
+    color: white; /* Optional: Change text color to white on hover */
+  }
+  
+  
+  .thank-you-message {
+    font-size: 18px;
+    color: #333;
+    margin-top: 20px;
+  }
+  
+  .customer-support-email {
+    margin-top: 30px;
+  }
+  
+  .email-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .email-link:hover {
+    text-decoration: underline;
+  }
+  
+  
+  
